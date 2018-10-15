@@ -5,6 +5,11 @@
 Changelog
 =========
 
+Version 1.5.0 - Unreleased
+--------------------------
+
+**Add support for old Sass syntax**
+
 Version 1.4.1 - 2018/10/21
 --------------------------
 

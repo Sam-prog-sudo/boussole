@@ -50,7 +50,7 @@ flake:
 .PHONY: flake
 
 tests:
-	$(PYTEST) -vv --exitfirst tests/
+	$(PYTEST) -vv tests/
 .PHONY: tests
 
 quality: tests flake

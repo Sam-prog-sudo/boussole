@@ -36,7 +36,7 @@ class ScssImportsParser(object):
     REGEX_IMPORT_RULE = re.compile(r'@import\s*(url)?\s*\(?([^;]+?)\)?;',
                                    re.IGNORECASE)
     # Second part (for singleline comment) contain a negative lookbehind
-    # assertion to avoid to match on url protocole (http://) and cause issues
+    # assertion to avoid to match on url protocole (http://) which cause issues
     # in parsing
     REGEX_COMMENTS = re.compile(r'(/\*.*?\*/)|((?<!(:))//.*?(\n|$))',
                                 re.IGNORECASE | re.DOTALL)
@@ -134,3 +134,19 @@ class ScssImportsParser(object):
             self.remove_comments(content)
         )
         return self.flatten_rules(declarations)
+
+
+class SassImportsParser(ScssImportsParser):
+    """
+    Sass indented syntax parser to find import rules.
+
+    Multiline comments are not supported, it is actually to difficult to manage
+    since they don't have a closing pattern ``*/`` and depend only on
+    indentation continuation.
+
+    Attributes:
+        REGEX_IMPORT_RULE: Compiled regex used to find import rules.
+        REGEX_COMMENTS: Compiled regex used to find and remove comments.
+    """
+    REGEX_IMPORT_RULE = re.compile(r'@import\s*(url)?\s*\(?([^;]+?)\)?\n',
+                                   re.IGNORECASE)
