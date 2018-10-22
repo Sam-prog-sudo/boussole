@@ -31,7 +31,7 @@ class ImportPathsResolver(object):
             disable (``False``) exception raising when a path can not be
             resolved.
     """
-    CANDIDATE_EXTENSIONS = ['scss', 'sass', 'css', ]
+    CANDIDATE_EXTENSIONS = ['scss', 'sass', 'css']
     STRICT_PATH_VALIDATION = True
 
     def candidate_paths(self, filepath):
